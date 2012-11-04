@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Spottr' target in the 'Spottr' project
+//
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+#endif
