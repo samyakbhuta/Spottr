@@ -88,14 +88,22 @@ function uploadPic() {
   options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
   options.mimeType="image/jpeg";
 
-  var params = {};
-  params.value1 = "test";
-  params.value2 = "param";
+  navigator.geolocation.getCurrentPosition(function(position) {
+    var params = {};
+    params.latitude = position.coords.latitude;
+    params.longitude = position.coords.longitude;
+    params.accuracy = position.coords.accuracy;
+    params.timestamp = position.timestamp;
 
-  options.params = params;
+    options.params = params;
 
-  var ft = new FileTransfer();
-  ft.upload(imageURI, "http://requestb.in/1145iuo1", win, fail, options);
+    var ft = new FileTransfer();
+    ft.upload(imageURI, "http://requestb.in/1145iuo1", win, fail, options);
+  },
+  function (error) {
+    console.log('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
+  });
 }
 
 function win(r) {
