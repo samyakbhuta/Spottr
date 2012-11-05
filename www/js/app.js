@@ -38,18 +38,9 @@ function onPhotoURISuccess(imageURI) {
   // Uncomment to view the image file URI
   // console.log(imageURI);
 
-  // Get image handle
-  //
-  var selectedImage = document.getElementById('selected-image');
 
-  // Unhide image elements
-  //
-  selectedImage.style.display = 'block';
-
-  // Show the captured photo
-  // The inline CSS rules are used to resize the image
-  //
-  selectedImage.src = imageURI;
+  // Setting the image
+  $('#selected-image').attr('src',imageURI);
 }
 
 // A button will call this function
