@@ -945,10 +945,15 @@
   }
   .navbar-fixed-bottom {
     margin-top: 20px;
+    position: fixed;
   }
   .navbar-fixed-top .navbar-inner,
   .navbar-fixed-bottom .navbar-inner {
     padding: 5px;
+  }
+  .navbar-fixed-bottom .navbar-inner {
+    margin-left: 20px;
+    margin-right: 20px;
   }
   .navbar .container {
     width: auto;
