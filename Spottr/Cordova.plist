@@ -23,6 +23,7 @@
 	<key>ExternalHosts</key>
 	<array>
 		<string>*.placehold.it</string>
+		<string>*.requestb.in</string>
 	</array>
 	<key>Plugins</key>
 	<dict>

@@ -10,6 +10,12 @@ document.addEventListener("deviceready",onDeviceReady,false);
 function onDeviceReady() {
     pictureSource=navigator.camera.PictureSourceType;
     destinationType=navigator.camera.DestinationType;
+    $('#take-pic').click(function(){
+      getPhoto(pictureSource.PHOTOLIBRARY);
+    });
+    $('#upload-pic').click(function(){
+      uploadPic();
+    });
 }
 
 // Called when a photo is successfully retrieved
@@ -41,6 +47,7 @@ function onPhotoURISuccess(imageURI) {
 
   // Setting the image
   $('#selected-image').attr('src',imageURI);
+  $('#upload-pic').removeAttr("disabled");
 }
 
 // A button will call this function
@@ -72,4 +79,33 @@ function getPhoto(source) {
 //
 function onFail(message) {
   alert('Failed because: ' + message);
+}
+
+function uploadPic() {
+  var imageURI = $('#selected-image').attr('src');
+  var options = new FileUploadOptions();
+  options.fileKey="file";
+  options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+  options.mimeType="image/jpeg";
+
+  var params = {};
+  params.value1 = "test";
+  params.value2 = "param";
+
+  options.params = params;
+
+  var ft = new FileTransfer();
+  ft.upload(imageURI, "http://requestb.in/1145iuo1", win, fail, options);
+}
+
+function win(r) {
+    console.log("Code = " + r.responseCode);
+    console.log("Response = " + r.response);
+    console.log("Sent = " + r.bytesSent);
+}
+
+function fail(error) {
+    alert("An error has occurred: Code = " + error.code);
+    console.log("upload error source " + error.source);
+    console.log("upload error target " + error.target);
 }
